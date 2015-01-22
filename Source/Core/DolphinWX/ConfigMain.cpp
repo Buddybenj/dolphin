@@ -322,6 +322,7 @@ void CConfigMain::InitializeGUILists()
 void CConfigMain::InitializeGUIValues()
 {
 	const SCoreStartupParameter& startup_params = SConfig::GetInstance().m_LocalCoreStartupParameter;
+	bool NTSC = SConfig::GetInstance().m_LocalCoreStartupParameter.bNTSC;
 
 	// General - Basic
 	CPUThread->SetValue(startup_params.bCPUThread);
@@ -440,7 +441,7 @@ void CConfigMain::InitializeGUIValues()
 
 	// Wii - Misc
 	WiiScreenSaver->SetValue(!!SConfig::GetInstance().m_SYSCONF->GetData<u8>("IPL.SSV"));
-	WiiPAL60->SetValue(!!SConfig::GetInstance().m_SYSCONF->GetData<u8>("IPL.E60"));
+	WiiPAL60->SetValue(!!SConfig::GetInstance().m_SYSCONF->GetData<u8>("IPL.E60") && !NTSC);
 	WiiAspectRatio->SetSelection(SConfig::GetInstance().m_SYSCONF->GetData<u8>("IPL.AR"));
 	WiiSystemLang->SetSelection(SConfig::GetInstance().m_SYSCONF->GetData<u8>("IPL.LNG"));
 
